@@ -134,8 +134,10 @@ Send bytes over an established connection
 bool GSM_Shield::SendBytes(char *data, int length) {
     _s->println("AT+QISEND");
 
+    delay(1000);
+
     for (int i = 0; i < length; i++) {
-        _s->write(data); // transmit byte
+        _s->write(*data); // transmit byte
         data++; // next byte
     }
 
