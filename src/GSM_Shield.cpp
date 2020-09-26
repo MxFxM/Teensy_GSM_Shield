@@ -4,16 +4,6 @@
 
 /*
 * TODO list:
-* - test functions
-*   - init
-*   - reset
-*   - enterpin
-*   - enterapn
-*   - activategprs
-*   - testip
-*   - connecttoserver
-*   - sendbytes
-*   - disconnectfromserver
 * - wait for ok on enterpin
 * - wait for cell ready on enterpin
 * - wait for ok on enterapn
