@@ -20,6 +20,11 @@ public:
     // methods
     bool EnterPin(String pin);
     bool EnterAPN(String adress, String user, String password);
+	bool ActivateGPRS();
+	bool TestIP();
+	bool ConnectToServer(String protocol, String ip, String port);
+	bool SendBytes(char *data, int length);
+	bool DisconnectFromServer();
 	
 	// set methods
 

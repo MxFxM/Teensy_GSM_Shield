@@ -9,9 +9,19 @@
 *   - reset
 *   - enterpin
 *   - enterapn
+*   - activategprs
+*   - testip
+*   - connecttoserver
+*   - sendbytes
+*   - disconnectfromserver
 * - wait for ok on enterpin
 * - wait for cell ready on enterpin
 * - wait for ok on enterapn
+* - wait for ok on activategprs
+* - wait for ip adress from testip
+* - wait for ok on connecttoserver
+* - wait for ok on sendbytes
+* - wait for ok on disconnectfromserver
 */
 
 /*
@@ -73,6 +83,73 @@ bool GSM_Shield::EnterAPN(String address, String user, String password) {
     _s->print("\"");
     _s->print(password);
     _s->println("\"");
+
+    // wait for ok
+    return 0; // no error
+}
+
+/*
+Activate GPRS
+*/
+bool GSM_Shield::ActivateGPRS() {
+    _s-> println("AT+QIACT");
+
+    // wait for ok
+    return 0; // no error
+}
+
+/*
+Check if module has received an ip
+*/
+bool GSM_Shield::TestIP() {
+    _s->println("AT+QILOCIP");
+
+    // wait for ok
+    return 0; // no error
+}
+
+/*
+Connect to a server using TCP or UDP
+*/
+bool GSM_Shield::ConnectToServer(String protocol, String ip, String port) {
+    _s->print("AT+QIREGAPP=");
+
+    _s->print("\"");
+    _s->print(protocol);
+    _s->print("\",");
+
+    _s->print("\"");
+    _s->print(ip);
+    _s->print("\",");
+    
+    _s->println(port);
+
+    // wait for ok
+    return 0; // no error
+}
+
+/*
+Send bytes over an established connection
+*/
+bool GSM_Shield::SendBytes(char *data, int length) {
+    _s->println("AT+QISEND");
+
+    for (int i = 0; i < length; i++) {
+        _s->write(data); // transmit byte
+        data++; // next byte
+    }
+
+    _s->write(0x1A); // end frame
+
+    // wait for ok
+    return 0; // no error
+}
+
+/*
+Disconnect from an established connection
+*/
+bool GSM_Shield::DisconnectFromServer() {
+    _s->println("AT+QICLOSE");
 
     // wait for ok
     return 0; // no error
