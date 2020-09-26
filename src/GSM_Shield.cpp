@@ -112,7 +112,7 @@ bool GSM_Shield::TestIP() {
 Connect to a server using TCP or UDP
 */
 bool GSM_Shield::ConnectToServer(String protocol, String ip, String port) {
-    _s->print("AT+QIREGAPP=");
+    _s->print("AT+QIOPEN=");
 
     _s->print("\"");
     _s->print(protocol);
