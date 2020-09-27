@@ -1,8 +1,5 @@
 #include <Arduino.h>
 
-// defines go here
-#define PIN_RECOVER 20
-
 class Stream;
 
 class GSM_Shield {
